@@ -1,0 +1,6 @@
+<launch>
+    <node name="Turtle_view" pkg="turtle_eric" type="my_turtle.py">
+    </node>
+    <node name="turtle_contorl" pkg="turtle_eric" type="turtle_contorl.py">
+    </node>
+</launch>

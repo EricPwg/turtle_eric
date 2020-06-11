@@ -10,6 +10,7 @@ import time
 
 forward_value = 0
 turn_value = 0
+pos = [0, 0]
 
 rospy.init_node('Turtle_view', anonymous=True)
 
@@ -19,12 +20,22 @@ tur.color("blue")
 
 def forward_hd(data):
     global forward_value
-    forward_value = data.data
+    data = data.data
+    if data > 300:
+        data = 300
+    if data < -300:
+        data = -300
+    forward_value = data
     print(forward_value)
 
 def turn_hd(data):
     global turn_value
-    turn_value = data.data
+    data = data.data
+    while data > 1800:
+        data = data-360
+    while data < -1800:
+        data = data+360
+    turn_value = data
 
 pub1 = rospy.Publisher('/turtle/position', Int32MultiArray, queue_size = 10)
 pub2 = rospy.Publisher('/turtle/heading', Float32, queue_size = 10)
@@ -36,7 +47,7 @@ print(123)
 
 while not rospy.is_shutdown():
     print(forward_value)
-    time.sleep(0.5)
+    time.sleep(0.1)
     tur.forward(forward_value)
     tur.right(turn_value)
     pos = tur.position()
