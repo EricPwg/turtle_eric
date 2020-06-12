@@ -10,8 +10,8 @@ import Tkinter as tk
 
 rospy.init_node('turtle_contorl', anonymous = True)
 
-pub1 = rospy.Publisher('/turtle/forward', Int32, queue_size = 10)
-pub2 = rospy.Publisher('/turtle/turn', Int32, queue_size = 10)
+pub1 = rospy.Publisher('/turtle/1/forward', Int32, queue_size = 10)
+pub2 = rospy.Publisher('/turtle/1/turn', Int32, queue_size = 10)
 
 win = tk.Tk()
 win.title('Turtle control')
